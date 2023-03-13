@@ -58,7 +58,6 @@ function buttonMaker() {
         const newBtn = document.createElement("button")
         newBtn.classList.add("slide-buttons-item")
         miniBtn.after(newBtn)
-
     }
 }
 
@@ -66,11 +65,22 @@ buttonMaker()
 
 const allBtn = $(".slide-buttons").children()
 
-allBtn.click((x) => {
-    console.dir(x)
+allBtn.click((button)=>{
+    const offset = button.target.dataset.activeBtn === "true" ? 1 : -1
+    console.log(offset)    
+    
+    const slides = $(".title-carrousel-list-item")
 
+    const activeSlide = $(".title-carrousel-list-item[data-active]")
 
-})
+    
+    
+    console.log(slides)
+        
+    
+}
+
+)
 
 
 
@@ -82,12 +92,24 @@ const buttons = document.querySelectorAll("[data-carousel-button]")
 buttons.forEach(button => {
     button.addEventListener("click", function heroCarousel(){
       const offset = button.dataset.carouselButton === "next" ? 1 : -1
+      
+        console.log(offset)
+      
       const slides = button
         .closest("[data-carousel]")
         .querySelector("[data-slides]")
-  
+      
+        console.log(slides)
+
       const activeSlide = slides.querySelector("[data-active]")
+
+        console.log(activeSlide)
+
       let newIndex = [...slides.children].indexOf(activeSlide) + offset
+
+        console.log(newIndex)
+        
+        
       if (newIndex < 0) newIndex = slides.children.length - 1
       if (newIndex >= slides.children.length) newIndex = 0
   
