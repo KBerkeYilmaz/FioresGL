@@ -1,0 +1,109 @@
+
+.main-navbar {
+
+    background-color: $main-theme;
+    // background-color: transparent;
+    z-index: 3;
+    width: 100vw;
+    height: 8%;
+    display: flex;
+    position: relative;
+    
+    &-list {
+        width: 100vw;
+        height: 8vh;
+        display: flex;
+        justify-content: center;
+
+        
+
+        &-item {
+            width: fit-content;
+            align-self: center;
+            margin-right: 1.5rem;
+                a {
+                color: $theme-new;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 1.2rem;
+                transition: all 500ms ease;
+                &:hover {
+                    color: #aaa6a6;
+                    cursor: pointer;
+                    transition: all 500ms;
+                }
+            }
+            
+        }
+        
+    }
+}
+
+.navbar-fiores-logo{
+    top: 0.5rem;
+    left: 1rem;
+    position: absolute;
+
+    img{
+        width: 3.5vw;
+        align-self: center;
+        animation: move forwards ease;
+        animation-duration: 3s;
+        animation-delay: 0;
+
+
+
+        &:nth-child(2){
+        width: 10vw;
+        align-self: center;
+        animation: appear forwards ease;
+        animation-duration: 3s;
+        animation-delay: 0;    
+        }
+    }
+}
+
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        top: 0;
+        left: 1rem;
+    }
+
+    80% {
+        opacity: 1;
+        top: 0;
+        left: 1rem;
+        transform: translateX(0);
+
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0.5rem);
+    }
+}
+
+
+
+
+@keyframes move {
+    0% {
+        opacity: 0;
+        top: 0;
+        left: 10rem;
+    }
+
+    80% {
+        opacity: 0;
+        top: 0;
+        left: 10rem;
+        transform: translateX(200%);
+
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(25%);
+    }
+}
