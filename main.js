@@ -1,50 +1,4 @@
 
-// // HERO CAROUSEL
-// const buttons = $("[data-carousel-button]")
-
-//   buttons.click(function heroCarousel(){
-//     const offset = $(this).dataset.carouselButton === "next" ? 1 : -1
-//     const slides = $(this)
-//       .closest("[data-carousel]")
-//       .querySelector("[data-slides]")
-
-//     const activeSlide = slides.querySelector("[data-active]")
-//     let newIndex = [...slides.children].indexOf(activeSlide) + offset
-//     if (newIndex < 0) newIndex = slides.children.length - 1
-//     if (newIndex >= slides.children.length) newIndex = 0
-
-//     slides.children[newIndex].dataset.active = true
-//     delete activeSlide.dataset.active
-//   })
-
-
-
-
-
-
-
-// const buttons = $("[data-carousel-button]")
-
-
-// buttons.click(function heroCarousel(){
-//     const offset = buttons.data("carousel-button") === "next" ? 1 : -1
-//     const slides = buttons
-//       .closest("[data-carousel]")
-//       .querySelector("[data-slides]")
-
-//     const activeSlide = slides.querySelector("[data-active]")
-//     let newIndex = [...slides.children].indexOf(activeSlide) + offset
-//     if (newIndex < 0) newIndex = slides.children.length - 1
-//     if (newIndex >= slides.children.length) newIndex = 0
-
-//     slides.children[newIndex].dataset.active = true
-//     delete activeSlide.dataset.active
-
-
-
-//   })
-
-
 
 
 
@@ -57,6 +11,7 @@ function buttonMaker() {
     for (let i = 0; i < heroSlides.length - 1; i++) {
         const newBtn = document.createElement("button")
         newBtn.classList.add("slide-buttons-item")
+        newBtn.dataset.index = i
         miniBtn.after(newBtn)
     }
 }
@@ -65,22 +20,42 @@ buttonMaker()
 
 const allBtn = $(".slide-buttons").children()
 
-allBtn.click((button)=>{
-    const offset = button.target.dataset.activeBtn === "true" ? 1 : -1
-    console.log(offset)    
-    
-    const slides = $(".title-carrousel-list-item")
-
-    const activeSlide = $(".title-carrousel-list-item[data-active]")
-
-    
-    
-    console.log(slides)
-        
-    
+function updateActiveButton(index) {
+    allBtn.removeAttr("data-active-btn")
+    allBtn.eq(index).attr("data-active-btn", true)
 }
 
-)
+
+function moveNext() {
+    const slides = $(".title-carrousel-list-item");
+    const activeSlide = $(".title-carrousel-list-item[data-active]");
+    let newIndex = (activeSlide.index() + 1) % slides.length;
+    activeSlide.removeAttr("data-active");
+    slides.eq(newIndex).attr("data-active", true);
+    updateActiveButton(newIndex);
+}
+
+
+
+
+allBtn.click((button)=>{
+    const newIndex = $(button.target).index();
+    const slides = $(".title-carrousel-list-item");
+    const activeSlide = $(".title-carrousel-list-item[data-active]");
+    activeSlide.removeAttr("data-active");
+    slides.eq(newIndex).attr("data-active", true);
+
+    allBtn.removeAttr("data-active-btn"); 
+    allBtn.eq(newIndex).attr("data-active-btn", true); 
+
+    buttons.forEach((button) => {
+        button.classList.remove("active");
+    });
+    buttonIndex = newIndex;
+    buttons[buttonIndex].classList.add("active");
+
+});
+
 
 
 
@@ -91,23 +66,20 @@ const buttons = document.querySelectorAll("[data-carousel-button]")
 
 buttons.forEach(button => {
     button.addEventListener("click", function heroCarousel(){
+
       const offset = button.dataset.carouselButton === "next" ? 1 : -1
       
-        console.log(offset)
       
       const slides = button
         .closest("[data-carousel]")
         .querySelector("[data-slides]")
       
-        console.log(slides)
 
       const activeSlide = slides.querySelector("[data-active]")
 
-        console.log(activeSlide)
 
       let newIndex = [...slides.children].indexOf(activeSlide) + offset
 
-        console.log(newIndex)
         
         
       if (newIndex < 0) newIndex = slides.children.length - 1
@@ -115,6 +87,11 @@ buttons.forEach(button => {
   
       slides.children[newIndex].dataset.active = true
       delete activeSlide.dataset.active 
+      
+
+
+      updateActiveButton(newIndex)
+
 
     })
   })
@@ -123,10 +100,20 @@ buttons.forEach(button => {
 
 
 
+const playBtn = $(".play-button");
+let intervalId;
 
+playBtn.click(() => {
+  const icon = playBtn.children();
 
+  icon.toggleClass("fa-play fa-pause");
 
-
+  if (icon.hasClass("fa-play")) {
+    clearInterval(intervalId);
+  } else {
+    intervalId = setInterval(moveNext, 3000);
+  }
+});
 
 
 
