@@ -14,7 +14,7 @@
 }
 
 body {
-  background: #F1DBBF;
+  background: #faf0d9;
 }
 
 html {
@@ -22,12 +22,13 @@ html {
 }
 
 .main-navbar {
-  background-color: #062a1a;
-  z-index: 3;
+  background: linear-gradient(rgba(6, 42, 26, 0.6392156863) 80%, rgba(255, 255, 255, 0) 102%);
+  position: fixed;
+  z-index: 1000;
   width: 100vw;
   height: 10vh;
   display: flex;
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 54px 55px, rgba(0, 0, 0, 0.6) 0px -12px 30px, rgba(0, 0, 0, 0.6) 0px 4px 6px, rgba(0, 0, 0, 0.6) 0px 12px 13px, rgba(0, 0, 0, 0.6) 0px -3px 5px;
+  border-bottom: none;
 }
 .main-navbar-list {
   width: 100vw;
@@ -116,7 +117,7 @@ html {
 }
 .title .title-carrousel-list {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   position: relative;
 }
 .title .title-carrousel-list-item {
@@ -138,32 +139,6 @@ html {
   -o-object-position: center;
      object-position: center;
 }
-.title .logo-banner {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  justify-content: center;
-  gap: 5%;
-  width: 100vw;
-  height: 20vh;
-}
-.title .logo-banner .logo-container {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100%;
-}
-.title .logo-banner .logo-container .logo {
-  width: 9vw;
-  position: relative;
-  bottom: 1rem;
-  transition: all ease-out 500ms;
-}
-.title .logo-banner .logo-container .logo:hover {
-  cursor: pointer;
-  width: 10vw;
-  transition: all ease-out 500ms;
-}
 
 .title-carrousel-list-direction {
   background: none;
@@ -174,12 +149,22 @@ html {
   border: none;
   font-size: 5rem;
   z-index: 2;
+  height: 100vh;
+  width: 15vw;
 }
 .title-carrousel-list-direction.arrow-right {
   right: 1rem;
+  opacity: 0;
+}
+.title-carrousel-list-direction.arrow-right:hover {
+  opacity: 1;
 }
 .title-carrousel-list-direction.arrow-left {
   left: 1rem;
+  opacity: 0;
+}
+.title-carrousel-list-direction.arrow-left:hover {
+  opacity: 1;
 }
 .title-carrousel-list-direction:hover {
   cursor: pointer;
@@ -298,6 +283,10 @@ html {
 .about-banner .about-title-container .about-heading-container {
   display: flex;
   justify-content: space-evenly;
+}
+.about-banner .about-title-container .about-heading-container .about-article-heading[data-active] {
+  background: rgb(46, 139, 87);
+  border-radius: 5px;
 }
 .about-banner .about-title-container .about-heading-container a {
   width: 25%;
@@ -463,4 +452,40 @@ html {
   -o-object-fit: contain;
      object-fit: contain;
   margin-left: 3rem;
+}
+
+.work-groups {
+  width: 100vw;
+  height: 100vh;
+  background: #faf0d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.work-groups-banner {
+  padding-top: 2rem;
+  width: 12vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.work-groups-banner-list {
+  height: 100%;
+}
+.work-groups-banner-list-item {
+  width: 8vw;
+  min-width: 30px;
+  position: relative;
+  bottom: 1rem;
+  transition: all ease-out 500ms;
+}
+.work-groups-banner-list-item img {
+  width: 100%;
+}
+.work-groups-banner-list-item:hover {
+  cursor: pointer;
+  width: 10vw;
+  transition: all ease-out 500ms;
 }/*# sourceMappingURL=main.css.map */
