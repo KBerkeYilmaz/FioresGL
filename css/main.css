@@ -15,6 +15,7 @@
 
 body {
   background: #faf0d9;
+  overflow-x: hidden;
 }
 
 html {
@@ -22,13 +23,12 @@ html {
 }
 
 .main-navbar {
-  background: linear-gradient(rgba(6, 42, 26, 0.6392156863) 80%, rgba(255, 255, 255, 0) 102%);
+  background: whitesmoke;
   position: fixed;
   z-index: 1000;
   width: 100vw;
   height: 10vh;
   display: flex;
-  border-bottom: none;
 }
 .main-navbar-list {
   width: 100vw;
@@ -43,13 +43,13 @@ html {
   margin-right: 1.5rem;
 }
 .main-navbar-list-item a {
-  color: #faf0d9;
+  color: #006400;
   font-family: "Open Sans", sans-serif;
   font-size: 1.2rem;
   transition: all 500ms ease;
 }
 .main-navbar-list-item a:hover {
-  color: #aaa6a6;
+  color: #9ac08e;
   cursor: pointer;
   transition: all 500ms;
 }
@@ -69,7 +69,7 @@ html {
 .navbar-fiores-logo img:nth-child(2) {
   width: 10vw;
   align-self: center;
-  animation: appear forwards ease;
+  animation: appear forwards;
   animation-duration: 3s;
   animation-delay: 0;
 }
@@ -106,6 +106,27 @@ html {
   100% {
     opacity: 1;
     transform: translateX(25%);
+  }
+}
+@media screen and (max-width: 600px) {
+  .main-navbar-list {
+    visibility: hidden;
+  }
+  .navbar-fiores-logo {
+    left: 50%;
+    top: 35%;
+    transform: translateX(-25%);
+    scale: 3;
+  }
+  .navbar-fiores-logo img {
+    width: 3.5vw;
+    align-self: center;
+    animation: none;
+  }
+  .navbar-fiores-logo img:nth-child(2) {
+    width: 10vw;
+    align-self: center;
+    animation: none;
   }
 }
 .title {
@@ -154,17 +175,9 @@ html {
 }
 .title-carrousel-list-direction.arrow-right {
   right: 1rem;
-  opacity: 0;
-}
-.title-carrousel-list-direction.arrow-right:hover {
-  opacity: 1;
 }
 .title-carrousel-list-direction.arrow-left {
   left: 1rem;
-  opacity: 0;
-}
-.title-carrousel-list-direction.arrow-left:hover {
-  opacity: 1;
 }
 .title-carrousel-list-direction:hover {
   cursor: pointer;
@@ -236,7 +249,7 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #062a1a;
+  background: whitesmoke;
   background-size: cover;
   background-position: center;
 }
@@ -283,9 +296,9 @@ html {
 .about-banner .about-title-container .about-heading-container {
   display: flex;
   justify-content: space-evenly;
+  border-radius: 24px;
 }
-.about-banner .about-title-container .about-heading-container .about-article-heading[data-active] {
-  background: rgb(46, 139, 87);
+.about-banner .about-title-container .about-heading-container .about-article-heading {
   border-radius: 5px;
 }
 .about-banner .about-title-container .about-heading-container a {
@@ -294,17 +307,20 @@ html {
   border-bottom: 1px solid black;
   font-size: 2rem;
 }
-.about-banner .about-title-container .about-heading-container a:hover {
+.about-banner .about-title-container .about-heading-container .about-article-heading:hover {
   transition: all 200ms ease;
   cursor: pointer;
   border-bottom: 3px solid black;
 }
 
 .organization {
-  scroll-snap-align: start;
   width: 100vw;
   height: 100vh;
-  background: #062a1a;
+  background: whitesmoke;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .organization .grid-area {
   display: grid;
@@ -317,27 +333,78 @@ html {
 }
 .organization .job-box p {
   line-height: 2;
-  color: black;
+  color: green;
 }
 .organization .job-box h4 {
-  color: #c0a76a;
-  color: black;
+  color: green;
 }
 .organization .job-box a {
   text-decoration: none;
-  color: black;
+  color: green;
 }
 .organization .job-box a:hover {
   color: rgb(27, 107, 168);
   transition: all 500ms;
 }
 .organization h3 {
-  font-size: 2rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 1rem;
+  text-align: center;
   font-family: "Roboto Slab", serif;
-  color: #c0a76a;
+  color: green;
+  font-size: 4rem;
+  margin-top: 1.5rem;
+}
+
+.member-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80vh;
+}
+.member-banner-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  gap: 1.5rem;
+}
+.member-banner-card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 55vh;
+  width: 20vw;
+  border-radius: 24px;
+  background: rgb(4, 77, 4);
+}
+.member-banner-card-item img {
+  border-radius: 5px;
+  margin-top: 1rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 90%;
+  margin-bottom: 1rem;
+}
+.member-banner-card-item h4 {
+  font-family: "Times New Roman", Times, serif;
+  color: #faf0d9;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  width: 90%;
+  text-align: center;
+  border: 0 1px 0 1px solid #faf0d9;
+}
+.member-banner-card-item p {
+  font-family: "Times New Roman", Times, serif;
+  color: #faf0d9;
+  width: 80%;
+  text-align: center;
+}
+.member-banner-card-item a {
+  margin-top: 1rem;
+  color: #faf0d9;
 }
 
 .footer {
@@ -347,7 +414,7 @@ html {
   display: flex;
   justify-content: center;
   gap: 50px;
-  background: #faf0d9;
+  background: whitesmoke;
   scroll-snap-align: start;
 }
 .footer input {
@@ -391,6 +458,7 @@ html {
   font-size: 2rem;
   margin-bottom: 2rem;
   font-family: "Roboto Slab", serif;
+  color: green;
 }
 .footer-contact .contact-us-form {
   display: flex;
@@ -421,7 +489,7 @@ html {
   scroll-snap-align: start;
   width: 100vw;
   height: 30vh;
-  background: gainsboro;
+  background: rgb(237, 240, 235);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -438,26 +506,28 @@ html {
   width: 100vw;
   height: 100%;
 }
-.references-banner-list :nth-child(2n) {
-  justify-content: flex-start;
+.references-banner-list :nth-child(1) img {
+  width: 7rem;
+}
+.references-banner-list :nth-child(2) img {
+  width: 7.5rem;
 }
 .references-banner-list-item {
-  width: 50vw;
+  width: 20vw;
   height: 25vh;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .references-banner-list-item img {
-  width: 15%;
+  width: 9rem;
   -o-object-fit: contain;
      object-fit: contain;
-  margin-left: 3rem;
 }
 
 .work-groups {
   width: 100vw;
   height: 100vh;
-  background: #faf0d9;
+  background: black;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

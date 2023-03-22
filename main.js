@@ -148,17 +148,30 @@ const aboutText = $(".about-article-text")
 
 
 aboutHeader.click((event) => {
-    let buttonEventTrigger = event.target.textContent
-    if (buttonEventTrigger === "Vision") {
-        aboutText.text("To take a share from the world market in many sectors, to be a pioneer in innovation by finding problems and developing constructive solutions to them. To shift world trade to young people who are much more open to research and questioning, much more dynamic and much more knowledgeable in technology.")
-    } else if (buttonEventTrigger === "Values") {
-        aboutText.text("Respect for life and the human being, in all its expressions and stages freedom, cooperation, ethical entrepreneurship as a generator of global wealth, standardization and efficiency in obtaining and expenditure of common resources.")
-    } else if (buttonEventTrigger === "Mission") {
-        aboutText.text("To get a share from the market in different countries and different sectors by recruiting young minds who continue to develop themselves in their fields. To create a huge network of connections for young and dynamic minds where they can get maximum efficiency, where everyone can take each other forward and benefit from each other's connections. Generating new and constructive ideas and realizing them with the right investments and incentives instead of selling them to companies.")
-    } else(
-        aboutText.text("Fiores is a multinational development project that takes the incubation system as its mission. On the way started in Turkey, its main goal is to spread all over the world and to carry out international standart innovator organizations of all kinds (social, industrial, commercial, sports, cultural,...) Our international Headquarters will be located in Ankara, and all pilot projects will be tested, to later take them to other countries.")
-    )
-})
+    let buttonEventTrigger = event.target.textContent;
+
+    function updateAboutText(newText) {
+        aboutText.fadeOut("slow", () => {
+            aboutText.text(newText).fadeIn("slow");
+        });
+    }
+
+    switch (buttonEventTrigger) {
+        case "Vision":
+            updateAboutText("To take a share from the world market in many sectors, to be a pioneer in innovation by finding problems and developing constructive solutions to them. To shift world trade to young people who are much more open to research and questioning, much more dynamic and much more knowledgeable in technology.");
+            break;
+        case "Values":
+            updateAboutText("Respect for life and the human being, in all its expressions and stages freedom, cooperation, ethical entrepreneurship as a generator of global wealth, standardization and efficiency in obtaining and expenditure of common resources.");
+            break;
+        case "Mission":
+            updateAboutText("To get a share from the market in different countries and different sectors by recruiting young minds who continue to develop themselves in their fields. To create a huge network of connections for young and dynamic minds where they can get maximum efficiency, where everyone can take each other forward and benefit from each other's connections. Generating new and constructive ideas and realizing them with the right investments and incentives instead of selling them to companies.");
+            break;
+        case "Who Are We?":
+            updateAboutText("Fiores is a multinational development project that takes the incubation system as its mission. On the way started in Turkey, its main goal is to spread all over the world and to carry out international standart innovator organizations of all kinds (social, industrial, commercial, sports, cultural,...) Our international Headquarters will be located in Ankara, and all pilot projects will be tested, to later take them to other countries.");
+            break;
+    }
+});
+
 
 // //////////////////// NAVBAR ADJUSTER // //////////////////// 
 
@@ -166,29 +179,81 @@ aboutHeader.click((event) => {
 $(window).scroll(function () {
     const scrollTop = $(window).scrollTop();
     if (scrollTop > 300) {
-        $(".main-navbar").slideUp()
+        $(".main-navbar").fadeOut();
     } else {
-        $(".main-navbar").slideDown()
+        $(".main-navbar").fadeIn();
     }
 });
-
 let navbarDown = false;
 
 $(document).on("mousemove", function(e) {
     const scrollTop = $(window).scrollTop();
-    if(scrollTop >= 400 && e.clientY <= 80) {
-        $(".main-navbar").slideDown();
+    if(scrollTop >= 400 && e.clientY <= 80 && !navbarDown) {
+        $(".main-navbar").fadeIn();
         navbarDown = true;
-    } else {
+    } else if (scrollTop <= 400 && navbarDown) {
+        $(".main-navbar").fadeOut();
         navbarDown = false;
     }
 });
 
 $(".main-navbar").on("mouseleave", function() {
     const scrollTop = $(window).scrollTop();
-    if(scrollTop > 300 && navbarDown) {
-        $(".main-navbar").slideUp();
+    if(scrollTop > 400 && navbarDown) {
+        $(".main-navbar").fadeOut();
         navbarDown = false;
     }
 });
+
+// ///////////////// HTML SCrollar ///////////
+
+        // let sections = $('section');
+        // let currentSectionIndex = 0;
+        // let isScrolling = false;
+
+        // function scrollToSection(index) {
+        //   if (isScrolling) return;
+
+        //   isScrolling = true;
+        //   currentSectionIndex = index;
+        //   let target = sections.eq(currentSectionIndex);
+          
+        //   $('html, body').animate({
+        //     scrollTop: target.offset().top
+        //   }, 1000, function() {
+        //     isScrolling = false;
+        //   });
+        // }
+
+        // function debounce(func, wait) {
+        //   let timeout;
+        //   return function() {
+        //     const context = this, args = arguments;
+        //     const later = function() {
+        //       timeout = null;
+        //       func.apply(context, args);
+        //     };
+        //     clearTimeout(timeout);
+        //     timeout = setTimeout(later, wait);
+        //   };
+        // }
+
+        // $(window).on('wheel', debounce(function(e) {
+        //   e.preventDefault();
+
+        //   if (isScrolling) return;
+
+        //   if (e.originalEvent.deltaY > 0) {
+        //     // Scroll down
+        //     if (currentSectionIndex < sections.length - 1) {
+        //       scrollToSection(currentSectionIndex + 1);
+        //     }
+        //   } else {
+        //     // Scroll up
+        //     if (currentSectionIndex > 0) {
+        //       scrollToSection(currentSectionIndex - 1);
+        //     }
+        //   }
+        // }, 0.5));
+
 
