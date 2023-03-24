@@ -151,8 +151,8 @@ aboutHeader.click((event) => {
     let buttonEventTrigger = event.target.textContent;
 
     function updateAboutText(newText) {
-        aboutText.fadeOut("slow", () => {
-            aboutText.text(newText).fadeIn("slow");
+        aboutText.fadeOut("fast", () => {
+            aboutText.text(newText).fadeIn("fast");
         });
     }
 
@@ -178,7 +178,7 @@ aboutHeader.click((event) => {
 
 $(window).scroll(function () {
     const scrollTop = $(window).scrollTop();
-    if (scrollTop > 300) {
+    if (scrollTop > 400) {
         $(".main-navbar").fadeOut();
     } else {
         $(".main-navbar").fadeIn();
@@ -188,11 +188,11 @@ let navbarDown = false;
 
 $(document).on("mousemove", function(e) {
     const scrollTop = $(window).scrollTop();
-    if(scrollTop >= 400 && e.clientY <= 80 && !navbarDown) {
-        $(".main-navbar").fadeIn();
+    if(scrollTop > 400 && e.clientY <= 80 && !navbarDown) {
+        $(".main-navbar").stop(true, true).fadeIn();
         navbarDown = true;
     } else if (scrollTop <= 400 && navbarDown) {
-        $(".main-navbar").fadeOut();
+        $(".main-navbar").stop(true, true).fadeOut();
         navbarDown = false;
     }
 });
@@ -200,10 +200,11 @@ $(document).on("mousemove", function(e) {
 $(".main-navbar").on("mouseleave", function() {
     const scrollTop = $(window).scrollTop();
     if(scrollTop > 400 && navbarDown) {
-        $(".main-navbar").fadeOut();
+        $(".main-navbar").stop(true, true).fadeOut();
         navbarDown = false;
     }
 });
+
 
 // ///////////////// HTML SCrollar ///////////
 
